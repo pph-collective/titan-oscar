@@ -2,10 +2,6 @@
 
 #Read in param path and make absolute, then shift for optargs
 paramPath="$1"
-if [[ ${str:0:1} != "/" ]] ; then
-	paramPath="$PWD/$paramPath";
-fi
-echo "Param path: " $paramPath;
 shift
 
 setting="custom"
@@ -103,6 +99,7 @@ prepSubmit() {
 
 if [ ! $paramPath ]; then
     usage;
+		exit 0;
 fi
 
 if [[ ${paramPath:0:1} != "/" ]] || [[ ${paramPath:0:1} == "~" ]]; then
