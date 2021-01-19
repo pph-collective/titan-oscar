@@ -74,8 +74,8 @@ options:
   -R rows         Optionally, which data rows of the sweep file to use in format start:stop
   -F force	  If the number of sweep combinations exceeds 100, run anyway
   -c num_cores	  How many cores to request and run the job on (default: $num_cores)
-	-p savePop			save population, either 'all' or 'core' (default none)
-	-P popPath			load population from the provide path (by default, creates a new population)
+  -p savePop	  Save population, either 'all' or 'core' (default none)
+  -P popPath	  Load population from the provide path (by default, creates a new population)
 "
 exit 0
 }
@@ -118,7 +118,7 @@ fi
 
 echo "
     jobname     $jobname
-    outPath	    $outPath
+    outPath     $outPath
     paramPath   $paramPath
     user        $user
     date        $date
