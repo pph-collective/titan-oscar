@@ -25,6 +25,8 @@ module load pypy/7.3.0_3.6
 
 This can either be the name of a [tag](https://github.com/marshall-lab/TITAN/releases) or a git commit hash (only recommended for developers).
 
+This will always overwrite any existing version of titan you have installed.
+
 ```
 ./installTitan.py <version or hash>
 ./installTitan.py v2.1.0
@@ -37,4 +39,4 @@ This script will install titan as a package on pypy3, so you can `import titan` 
 
 To run titan on oscar, use the `subTitan.sh` script to submit a job.
 
-See `./subTitan.sh --help`
+Run `./subTitan.sh` for usage of the command.

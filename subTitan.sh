@@ -57,7 +57,7 @@ outPath="$HOME/scratch/$folderName"
 
 usage() {
 echo "
-usage: subtitan {Parameter file or directory}[-T walltime] [-m memory] [-S setting] [-j jobname] [-r repeats] [-n iterations] [-b use_base] [-f folder_name] [-w sweep_defs] [-F force] [-c num_cores ]
+usage: ./subTitan.sh {Parameter file or directory} [-T walltime] [-m memory] [-S setting] [-j jobname] [-r repeats] [-n iterations] [-b use_base] [-f folder_name] [-w sweep_defs] [-F force] [-c num_cores ]
 
 Starts a TITAN simulation in ~/scratch/{SourceFolder}/{jobname}
 
