@@ -1,7 +1,11 @@
 #!/bin/bash
 
-#Read in source code path, then shift for optargs
+#Read in param path and make absolute, then shift for optargs
 paramPath="$1"
+if [[ ${str:0:1} != "/" ]] ; then
+	paramPath="$PWD/$paramPath";
+fi
+echo "Param path: " $paramPath;
 shift
 
 setting="custom"
