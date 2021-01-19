@@ -88,7 +88,7 @@ prepSubmit() {
     echo -e "\t$PWD"
 
     #Submit job to cluster
-    sbatch -J $jobname -t $walltime --mem=$memory -c $num_cores --mail-type=FAIL --mail-type=END --mail-user=NoMail run_titan -S $setting -p $paramPath -n $nMC $forceFlag $sweepDefs $sweepfile $rows $savePop $popPath
+    sbatch -J $jobname -t $walltime --mem=$memory -c $num_cores --mail-type=FAIL --mail-type=END --mail-user=NoMail $HOME/.local/bin/run_titan -S $setting -p $paramPath -n $nMC $forceFlag $sweepDefs $sweepfile $rows $savePop $popPath
 
     #Move back to base directory
     cd $basePath
