@@ -80,6 +80,17 @@ options:
 exit 0
 }
 
+# if no commands, print help
+if [ ! $paramPath ]; then
+    usage;
+		exit 0;
+fi
+
+# if param path is relative, make absolute
+if [[ ${paramPath:0:1} != "/" ]] || [[ ${paramPath:0:1} == "~" ]]; then
+	paramPath="$PWD/$paramPath"
+fi
+
 prepSubmit() {
     #Move into output folder
 		mkdir -p $finalPath
@@ -93,18 +104,6 @@ prepSubmit() {
     #Move back to base directory
     cd $basePath
 }
-
-
-# User and Date will be ignored if job ID is specified
-
-if [ ! $paramPath ]; then
-    usage;
-		exit 0;
-fi
-
-if [[ ${paramPath:0:1} != "/" ]] || [[ ${paramPath:0:1} == "~" ]]; then
-	paramPath="${pwd}/$paramPath"
-fi
 
 if [ -d $outPath$jobname ]; then
     echo -e "\n\n!! WARNING !!\nThe folder $jobname already exists and will be OVERWRITTEN!\n"
