@@ -6,7 +6,6 @@ shift
 
 setting="custom"
 date=`date +%Y-%m-%d-T%H-%M-%S`
-user=${USER}
 walltime=12:00:00
 memory=12g
 outfile="Jobname.o"
@@ -74,8 +73,8 @@ options:
   -R rows         Optionally, which data rows of the sweep file to use in format start:stop
   -F force	  If the number of sweep combinations exceeds 100, run anyway
   -c num_cores	  How many cores to request and run the job on (default: $num_cores)
-  -p savePop	  Save population (default false)
-  -P popPath	  Load population from the provide path (by default, creates a new population)
+  -p savePop	  Save the population (by default, does not save the population)
+  -P popPath	  Load population from the provided path (by default, creates a new population)
 "
 exit 0
 }
@@ -112,7 +111,7 @@ echo "
     jobname     $jobname
     outPath     $outPath
     paramPath   $paramPath
-    user        $user
+    user        $USER
     date        $date
     walltime    $walltime
     memory      $memory
