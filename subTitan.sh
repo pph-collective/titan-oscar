@@ -74,7 +74,7 @@ options:
   -R rows         Optionally, which data rows of the sweep file to use in format start:stop
   -F force	  If the number of sweep combinations exceeds 100, run anyway
   -c num_cores	  How many cores to request and run the job on (default: $num_cores)
-  -p savePop	  Save population, either 'all' or 'core' (default none)
+  -p savePop	  Save population (default false)
   -P popPath	  Load population from the provide path (by default, creates a new population)
 "
 exit 0
@@ -84,11 +84,6 @@ exit 0
 if [ ! $paramPath ]; then
     usage;
 		exit 0;
-fi
-
-# if param path is relative, make absolute
-if [[ ${paramPath:0:1} != "/" ]] || [[ ${paramPath:0:1} == "~" ]]; then
-	paramPath="$PWD/$paramPath"
 fi
 
 prepSubmit() {
