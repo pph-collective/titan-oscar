@@ -50,7 +50,7 @@ if [[ $jobname == "" ]]; then
 fi
 
 if [[ $folderName == "" ]]; then
-	folderName="$setting/"
+	folderName="$setting"
 fi
 
 outPath="$HOME/scratch/$folderName"
@@ -94,18 +94,16 @@ fi
 prepSubmit() {
     #Move into output folder
 		mkdir -p $finalPath
-    # echo -e "\n\tMoving to model folder directory"
-    # cd $finalPath
-    echo -e "\t$PWD"
+    echo -e "\t$finalPath"
 
     #Submit job to cluster
-    sbatch -J $jobname -t $walltime --mem=$memory -c $num_cores --mail-type=FAIL --mail-type=END --mail-user=NoMail $HOME/.local/bin/run_titan -S $setting -p $paramPath -n $nMC $forceFlag $sweepDefs $sweepfile $rows $savePop $popPath -o $finalPath
+    sbatch --output=$finalPath/slurm.out -J $jobname -t $walltime --mem=$memory -c $num_cores --mail-type=FAIL --mail-type=END --mail-user=NoMail $HOME/.local/bin/run_titan -S $setting -p $paramPath -n $nMC $forceFlag $sweepDefs $sweepfile $rows $savePop $popPath -o $finalPath/results
 
     #Move back to base directory
     cd $basePath
 }
 
-if [ -d $outPath$jobname ]; then
+if [ -d $outPath/$jobname ]; then
     echo -e "\n\n!! WARNING !!\nThe folder $jobname already exists and will be OVERWRITTEN!\n"
     read -p "Continue (y/n)?" choice
     case "$choice" in
