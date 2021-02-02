@@ -6,7 +6,6 @@ shift
 
 setting="custom"
 date=`date +%Y-%m-%d-T%H-%M-%S`
-user=${USER}
 walltime=12:00:00
 memory=12g
 outfile="Jobname.o"
@@ -50,7 +49,7 @@ if [[ $jobname == "" ]]; then
 fi
 
 if [[ $folderName == "" ]]; then
-	folderName="$setting/"
+	folderName="$setting"
 fi
 
 outPath="$HOME/scratch/$folderName"
@@ -74,8 +73,8 @@ options:
   -R rows         Optionally, which data rows of the sweep file to use in format start:stop
   -F force	  If the number of sweep combinations exceeds 100, run anyway
   -c num_cores	  How many cores to request and run the job on (default: $num_cores)
-  -p savePop	  Save population, either 'all' or 'core' (default none)
-  -P popPath	  Load population from the provide path (by default, creates a new population)
+  -p savePop	  Save the population (by default, does not save the population)
+  -P popPath	  Load population from the provided path (by default, creates a new population)
 "
 exit 0
 }
@@ -86,26 +85,19 @@ if [ ! $paramPath ]; then
 		exit 0;
 fi
 
-# if param path is relative, make absolute
-if [[ ${paramPath:0:1} != "/" ]] || [[ ${paramPath:0:1} == "~" ]]; then
-	paramPath="$PWD/$paramPath"
-fi
-
 prepSubmit() {
     #Move into output folder
 		mkdir -p $finalPath
-    echo -e "\n\tMoving to model folder directory"
-    cd $finalPath
-    echo -e "\t$PWD"
+    echo -e "\t$finalPath"
 
     #Submit job to cluster
-    sbatch -J $jobname -t $walltime --mem=$memory -c $num_cores --mail-type=FAIL --mail-type=END --mail-user=NoMail $HOME/.local/bin/run_titan -S $setting -p $paramPath -n $nMC $forceFlag $sweepDefs $sweepfile $rows $savePop $popPath
+    sbatch --output=$finalPath/slurm.out -J $jobname -t $walltime --mem=$memory -c $num_cores --mail-type=FAIL --mail-type=END --mail-user=NoMail $HOME/.local/bin/run_titan -S $setting -p $paramPath -n $nMC $forceFlag $sweepDefs $sweepfile $rows $savePop $popPath -o $finalPath/results
 
     #Move back to base directory
     cd $basePath
 }
 
-if [ -d $outPath$jobname ]; then
+if [ -d $outPath/$jobname ]; then
     echo -e "\n\n!! WARNING !!\nThe folder $jobname already exists and will be OVERWRITTEN!\n"
     read -p "Continue (y/n)?" choice
     case "$choice" in
@@ -119,7 +111,7 @@ echo "
     jobname     $jobname
     outPath     $outPath
     paramPath   $paramPath
-    user        $user
+    user        $USER
     date        $date
     walltime    $walltime
     memory      $memory
