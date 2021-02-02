@@ -33,10 +33,20 @@ This will always overwrite any existing version of titan you have installed.
 ./installTitan.py ab5df07247f315d676676fb83eb9ca3ec4a10b8b
 ```
 
-This script will install titan as a package on pypy3, so you can `import titan` from pypy3 no matter where you are on oscar.
+This script will install titan as a package on pypy3, so you can `import titan` from a pypy3 session no matter where your current working directory is on oscar.
 
-4. Submit a batch job for your run
+4. Commandify subTitan
 
-To run titan on oscar, use the `subTitan.sh` script to submit a job.
+Make the `subTitan.sh` file runnable anywhere on oscar by commandify-ing it
 
-Run `./subTitan.sh` for usage of the command.
+```
+./commandifySubTitan.sh
+```
+
+Now `subTitan` can be run from any location on OSCAR.
+
+5. Submit a batch job for your run
+
+To run titan on oscar, use the `subTitan` program to submit a job.
+
+Run `subTitan` for usage of the command.
