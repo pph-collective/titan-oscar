@@ -11,4 +11,4 @@ ln -s -f $currPath/subTitan.sh subTitan
 
 cd $currPath
 
-echo "Success! `subTitan` command now aviable anywhere on OSCAR"
+echo "Success! subTitan command now aviable anywhere on OSCAR"
