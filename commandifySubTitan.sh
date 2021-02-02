@@ -7,6 +7,8 @@ mkdir -p ~/bin
 currPath=$PWD
 
 cd ~/bin
-ln -s $currPath/subTitan.sh subTitan
+ln -s -f $currPath/subTitan.sh subTitan
 
 cd $currPath
+
+echo "Success! `subTitan` command now aviable anywhere on OSCAR"
