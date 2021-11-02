@@ -8,7 +8,7 @@ Scripts for installing and running TITAN on oscar.
 
 ```
 cd <directory where you want titan-oscar to live (e.g. ~/data/<your username>)>
-git clone https://github.com/marshall-lab/titan-oscar.git
+git clone https://github.com/pph-collective/titan-oscar.git
 ```
 
 2. Make sure the pypy3 module is loaded
@@ -23,7 +23,7 @@ module load pypy/7.3.0_3.6
 
 > :warning: **Only works with TITAN versions 2.1.0 and higher**
 
-This can either be the name of a [tag](https://github.com/marshall-lab/TITAN/releases) or a git commit hash (only recommended for developers).
+This can either be the name of a [tag](https://github.com/pph-collective/TITAN/releases) or a git commit hash (only recommended for developers).
 
 This will always overwrite any existing version of titan you have installed.
 
