@@ -5,7 +5,7 @@ import subprocess
 if sys.version_info < (3, 0, 0):
     raise Exception("Please use Pypy 3.")
 
-TITAN_PATH = "git+https://github.com/marshall-lab/TITAN"
+TITAN_PATH = "git+https://github.com/pph-collective/TITAN"
 
 def install_titan(version):
     package = f"{TITAN_PATH}@{version}"
